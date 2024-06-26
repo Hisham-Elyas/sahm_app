@@ -61,11 +61,13 @@ class PaymentMethodController extends GetxController {
     var maskedNumber = '';
 
     for (var i = 0; i < length; i++) {
-      if (i < 4 || (i >= 12)) {
+      if (i >= 12) {
         // keep the first 4 digits and the last 4 digits visible
+        // if (i < 4 || (i >= 12)) {  // keep the first 4 digits and the last 4 digits visible
+
         maskedNumber += cardNumber[i];
       } else {
-        // mask the digits between 4 and the length-4 with asterisks
+        // mask the digits  length-4 with asterisks
         maskedNumber += '*';
       }
     }
