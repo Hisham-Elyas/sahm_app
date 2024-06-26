@@ -54,6 +54,41 @@ class PaymentMethodController extends GetxController {
     super.onInit();
   }
 
+  String maskCreditCardNumber(String cardNumber) {
+    cardNumber.replaceAll(' ', '').replaceAll('-', '');
+
+    final length = cardNumber.length;
+    var maskedNumber = '';
+
+    for (var i = 0; i < length; i++) {
+      if (i < 4 || (i >= 12)) {
+        // keep the first 4 digits and the last 4 digits visible
+        maskedNumber += cardNumber[i];
+      } else {
+        // mask the digits between 4 and the length-4 with asterisks
+        maskedNumber += '*';
+      }
+    }
+    String groupDigits(String input) {
+      if (input.isEmpty) {
+        return input;
+      }
+
+      final groups = <String>[];
+      final length = input.length;
+
+      for (var i = 0; i < length; i += 4) {
+        final groupLength = i + 4 <= length ? 4 : length - i;
+        final group = input.substring(i, i + groupLength);
+        groups.add(group);
+      }
+
+      return groups.join(' ');
+    }
+
+    return groupDigits(maskedNumber);
+  }
+
   void setCartToDefault({required PaymentCardModel paymentCard}) {
     for (var element in paymentCardList) {
       if (element == paymentCard) {

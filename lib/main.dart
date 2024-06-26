@@ -5,6 +5,7 @@ import 'package:sahm_app/constants/app_color.dart';
 
 import 'controller/payment_method_controller.dart';
 import 'view/Order Details/order_details_screen.dart';
+import 'view/Payment/checkout_screen.dart';
 import 'view/Payment/payment_methods_screen.dart';
 
 void main() {
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         title: 'SAHM_APP',
-        home: const OrderDetailsScreen(),
+        // home: const OrderDetailsScreen(),
+        home: const CheckoutScreen(),
         // home: const PaymentMethodsScreen(),
       ),
     );
